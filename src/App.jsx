@@ -19,9 +19,16 @@ function App() {
     return savedTotalExpense ? parseFloat(savedTotalExpense) : 0; // Default total expense
   });
   //here we are getting data from localstorage if available
+
   const [expenseData, setExpenseData] = useState(() => {
     const savedExpenses = localStorage.getItem("expenseData");
-    return savedExpenses ? JSON.parse(savedExpenses) : [];
+    // Check if savedExpenses is valid before parsing
+    try {
+      return savedExpenses ? JSON.parse(savedExpenses) : [];
+    } catch (error) {
+      console.error("Failed to parse expense data from localStorage:", error);
+      return [];
+    }
   });
 
   // Store balance in localStorage whenever it changes
@@ -54,7 +61,14 @@ function App() {
       />
       <div>
         <h2 style={{ fontStyle: "italic" }}>Recent Transaction</h2>
-        <RecentTransaction expenseData={expenseData} />
+        <RecentTransaction
+          balance={balance}
+          setBalance={setBalance}
+          expenseData={expenseData}
+          setExpenseData={setExpenseData}
+          totalExpense={totalExpense}
+          setTotalExpense={setTotalExpense}
+        />
       </div>
     </div>
   );

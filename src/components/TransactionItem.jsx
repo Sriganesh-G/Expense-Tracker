@@ -12,14 +12,44 @@ const iconMapping = {
   Food: IoPizzaOutline,
 };
 
-const TransactionItem = ({ title, price, category, date }) => {
+const TransactionItem = ({
+  title,
+  price,
+  category,
+  date,
+  balance,
+  setBalance,
+  expense,
+  expenseData,
+  setExpenseData,
+  totalExpense,
+  setTotalExpense,
+}) => {
   // Get the appropriate icon component based on the category
   const IconComponent = iconMapping[category] || IoPizzaOutline; // Default to IoPizzaOutline if no match
 
-  const handleRemoveItem = (e) => {
-    /*    if (e.target.value.id) {
-      localStorage.removeItem(e.target.value.name);
-    } */
+  const handleRemoveItem = () => {
+    // Filter out the item by title (assuming title is unique, as you mentioned)
+    const priceNumber = parseFloat(price);
+
+    // Update the state in the parent component
+    const updatedExpenses = expenseData.filter(
+      (expense) => expense.title !== title
+    );
+
+    // Update balance and total expense
+    const updatedBalance = balance + priceNumber; // Add back to balance
+    const updatedTotalExpense = totalExpense - priceNumber; // Subtract from total expense
+
+    // Set the updated state
+    setExpenseData(updatedExpenses);
+    setBalance(updatedBalance);
+    setTotalExpense(updatedTotalExpense);
+
+    // Update localStorage
+    localStorage.setItem("expenseData", JSON.stringify(updatedExpenses));
+    localStorage.setItem("balance", updatedBalance);
+    localStorage.setItem("totalExpense", updatedTotalExpense);
   };
   return (
     <div
@@ -97,3 +127,30 @@ const TransactionItem = ({ title, price, category, date }) => {
 };
 
 export default TransactionItem;
+
+/*[
+  {
+    "title": "samosa",
+    "price": "65",
+    "category": "Food",
+    "date": "2024-09-17"
+  },
+  {
+    "title": "banglore tour",
+    "price": "2500",
+    "category": "Travel",
+    "date": "2024-09-25"
+  },
+  {
+    "title": "movie kantara",
+    "price": "250",
+    "category": "Entertainment",
+    "date": "2024-09-26"
+  },
+  {
+    "title": "amazon prime",
+    "price": "599",
+    "category": "Entertainment",
+    "date": "2024-10-01"
+  }
+] */

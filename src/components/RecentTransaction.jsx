@@ -1,7 +1,14 @@
 import React from "react";
 import TransactionItem from "./TransactionItem";
 
-const RecentTransaction = ({ expenseData }) => {
+const RecentTransaction = ({
+  balance,
+  setBalance,
+  expenseData,
+  setExpenseData,
+  totalExpense,
+  setTotalExpense,
+}) => {
   return (
     <div
       style={{
@@ -21,6 +28,12 @@ const RecentTransaction = ({ expenseData }) => {
             price={expense.price}
             category={expense.category}
             date={expense.date}
+            balance={balance}
+            setBalance={setBalance}
+            expenseData={expenseData}
+            setExpenseData={setExpenseData}
+            totalExpense={totalExpense}
+            setTotalExpense={setTotalExpense}
           />
         ))
       ) : (
