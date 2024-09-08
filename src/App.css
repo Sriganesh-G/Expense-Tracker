@@ -1,0 +1,38 @@
+h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+input {
+  height: 51px;
+  width: 223px;
+  border-radius: 15px;
+  color: #919191;
+  border: 0px;
+  box-shadow: rgb(38, 57, 77) 0px 10px 20px -5px;
+  padding-left: 10px;
+}
+
+select {
+  height: 51px;
+  width: 223px;
+  border-radius: 15px;
+  color: #919191;
+  border: 0px;
+  box-shadow: rgb(38, 57, 77) 0px 10px 20px -5px;
+  padding-left: 10px;
+}
+
+.add-balance {
+  width: 538px;
+  height: 164px;
+  border-radius: 15px;
+  color: black;
+  background-color: #efefef;
+  margin: 15px;
+  margin-top: 15px;
+  position: sticky;
+  top: 30%;
+  left: 30%;
+}
