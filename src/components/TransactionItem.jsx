@@ -16,6 +16,11 @@ const TransactionItem = ({ title, price, category, date }) => {
   // Get the appropriate icon component based on the category
   const IconComponent = iconMapping[category] || IoPizzaOutline; // Default to IoPizzaOutline if no match
 
+  const handleRemoveItem = (e) => {
+    /*    if (e.target.value.id) {
+      localStorage.removeItem(e.target.value.name);
+    } */
+  };
   return (
     <div
       style={{
@@ -70,6 +75,7 @@ const TransactionItem = ({ title, price, category, date }) => {
             border: "none",
             cursor: "pointer",
           }}
+          onClick={handleRemoveItem}
         />
         <MdEdit
           style={{

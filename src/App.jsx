@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import AddBalance from "./components/AddBalance";
 import AddExpenses from "./components/AddExpenses";
@@ -8,9 +8,36 @@ import ReactModal from "react-modal";
 import RecentTransaction from "./components/RecentTransaction";
 
 function App() {
-  const [balance, setBalance] = useState(5000);
-  const [totalExpense, setTotalExpense] = useState(0);
-  const [expenseData, setExpenseData] = useState([]);
+  // Initialize state from localStorage if available, otherwise use default values
+  const [balance, setBalance] = useState(() => {
+    const savedBalance = localStorage.getItem("balance");
+    return savedBalance ? parseFloat(savedBalance) : 5000; // Default balance
+  });
+  // setting the totalExpense in localStorage
+  const [totalExpense, setTotalExpense] = useState(() => {
+    const savedTotalExpense = localStorage.getItem("totalExpense");
+    return savedTotalExpense ? parseFloat(savedTotalExpense) : 0; // Default total expense
+  });
+  //here we are getting data from localstorage if available
+  const [expenseData, setExpenseData] = useState(() => {
+    const savedExpenses = localStorage.getItem("expenseData");
+    return savedExpenses ? JSON.parse(savedExpenses) : [];
+  });
+
+  // Store balance in localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("balance", balance);
+  }, [balance]);
+
+  // Store totalExpense in localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("totalExpense", totalExpense);
+  }, [totalExpense]);
+  // here we are storing the data in localStorage whenever expenseData change
+  useEffect(() => {
+    localStorage.setItem("expenseData", JSON.stringify(expenseData));
+  }),
+    [expenseData];
 
   return (
     <div
