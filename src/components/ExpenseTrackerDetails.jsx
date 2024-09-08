@@ -8,7 +8,14 @@ import AddBalance from "./AddBalance";
 // Set the app element for accessibility
 Modal.setAppElement("#root");
 
-const ExpenseTrackerDetails = ({ balance, setBalance }) => {
+const ExpenseTrackerDetails = ({
+  balance,
+  setBalance,
+  expenseData,
+  setExpenseData,
+  totalExpense,
+  setTotalExpense,
+}) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
@@ -26,7 +33,14 @@ const ExpenseTrackerDetails = ({ balance, setBalance }) => {
       }}
     >
       <WalletBalance balance={balance} setBalance={setBalance} />
-      <Expenses balance={balance} setBalance={setBalance} />
+      <Expenses
+        balance={balance}
+        setBalance={setBalance}
+        expenseData={expenseData}
+        setExpenseData={setExpenseData}
+        totalExpense={totalExpense}
+        setTotalExpense={setTotalExpense}
+      />
       <PieChart />
     </div>
   );

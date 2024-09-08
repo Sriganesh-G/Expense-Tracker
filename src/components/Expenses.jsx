@@ -2,7 +2,14 @@ import { useState } from "react";
 import ReactModal from "react-modal";
 import AddExpenses from "./AddExpenses";
 
-const Expenses = ({ balance, setBalance }) => {
+const Expenses = ({
+  balance,
+  setBalance,
+  expenseData,
+  setExpenseData,
+  totalExpense,
+  setTotalExpense,
+}) => {
   // State hook to manage modal visibility
   const [showModal, setShowModal] = useState(false);
 
@@ -38,7 +45,7 @@ const Expenses = ({ balance, setBalance }) => {
         }}
       >
         <h1 style={{ fontSize: "30px" }}>
-          Expenses: <span style={{ color: "#F4BB4A" }}>₹500</span>
+          Expenses: <span style={{ color: "#F4BB4A" }}>₹{totalExpense}</span>
         </h1>
         <button
           style={{
@@ -76,7 +83,15 @@ const Expenses = ({ balance, setBalance }) => {
         contentLabel="Add Expense Modal"
         /*   onRequestClose={handleCloseModal}  */ // Optional: allows closing the modal by clicking outside
       >
-        <AddExpenses balance={balance} setBalance={setBalance} />
+        <AddExpenses
+          balance={balance}
+          setBalance={setBalance}
+          expenseData={expenseData}
+          setExpenseData={setExpenseData}
+          totalExpense={totalExpense}
+          setTotalExpense={setTotalExpense}
+          onClose={handleCloseModal} // Pass the close modal function
+        />
       </ReactModal>
     </div>
   );

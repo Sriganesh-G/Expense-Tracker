@@ -9,24 +9,25 @@ import RecentTransaction from "./components/RecentTransaction";
 
 function App() {
   const [balance, setBalance] = useState(5000);
-  const [expenseData, setExpenseData] = useState([
-    {
-      title: "Samosa",
-      price: 20,
-      category: ["Entertainment", "Food", "Travel"],
-      date: null,
-    },
-  ]);
+  const [totalExpense, setTotalExpense] = useState(0);
+  const [expenseData, setExpenseData] = useState([]);
 
   return (
     <div
       style={{ backgroundColor: "#3b3b3b", color: "#ffffff", height: "100vh" }}
     >
       <h2>Expense Tracker</h2>
-      <ExpenseTrackerDetails balance={balance} setBalance={setBalance} />
+      <ExpenseTrackerDetails
+        balance={balance}
+        setBalance={setBalance}
+        expenseData={expenseData}
+        setExpenseData={setExpenseData}
+        totalExpense={totalExpense}
+        setTotalExpense={setTotalExpense}
+      />
       <div>
         <h2 style={{ fontStyle: "italic" }}>Recent Transaction</h2>
-        <RecentTransaction />
+        <RecentTransaction expenseData={expenseData} />
       </div>
     </div>
   );

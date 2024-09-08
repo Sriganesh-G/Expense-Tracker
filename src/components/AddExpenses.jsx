@@ -1,16 +1,48 @@
 import { useState } from "react";
 import "../App.css";
-const AddExpenses = ({ balance, setBalance }) => {
+const AddExpenses = ({
+  balance,
+  setBalance,
+  expenseData,
+  setExpenseData,
+  totalExpense,
+  setTotalExpense,
+  onClose,
+}) => {
   const [formData, setFormData] = useState({
     title: "",
     price: "",
-    category: "",
+    category: "Entertainment",
     date: "",
   });
   const handleChange = (e) => {
-    e.preventDefault();
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    //console.log(formData);
   };
-  const handleClick = () => {};
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    const expenseAmount = Number(formData.price);
+    // checking if user spending is less than his balance or not , if spending > balance shows alert
+    if (expenseAmount > balance) {
+      alert("Insufficient Balance! ");
+      return;
+    }
+
+    // adding new expense to the expenseData
+    setExpenseData([...expenseData, formData]);
+
+    // updating the wallet balance
+    setBalance(balance - expenseAmount);
+
+    // updating the expenses
+    setTotalExpense(totalExpense + expenseAmount);
+    console.log("This is App data inside AddExpense component", expenseData);
+    //Close modal after submission
+    onClose();
+  };
+
   return (
     <div
       style={{
@@ -25,6 +57,7 @@ const AddExpenses = ({ balance, setBalance }) => {
     >
       <h2 style={{ fontSize: "30px" }}>Add Expenses</h2>
       <form
+        onSubmit={handleSubmit}
         style={{
           display: "grid",
           gridTemplateColumns: "253px 253px",
@@ -34,10 +67,29 @@ const AddExpenses = ({ balance, setBalance }) => {
           paddingLeft: "5px",
         }}
       >
-        <input type="text" placeholder="Title" />
+        <input
+          type="text"
+          name="title"
+          placeholder="Title"
+          onChange={handleChange}
+          value={formData.title}
+          required
+        />
 
-        <input type="text" placeholder="Price" />
-        <select name="Select" id="select">
+        <input
+          type="number"
+          placeholder="Price"
+          name="price"
+          value={formData.price}
+          onChange={handleChange}
+          required
+        />
+        <select
+          name="category"
+          value={formData.category}
+          onChange={handleChange}
+          required
+        >
           <option value="Entertainment">Entertainment</option>
           <option value="Food">Food</option>
           <option value="Travel">Travel</option>
@@ -45,13 +97,12 @@ const AddExpenses = ({ balance, setBalance }) => {
         <input
           type="date"
           name="date"
-          onChange={(e) => {
-            e.preventDefault();
-            setDateData(e.target.value);
-            console.log(dateData);
-          }}
+          value={formData.date}
+          onChange={handleChange}
+          required
         />
         <button
+          type="submit"
           style={{
             width: "223px",
             height: "51px",
@@ -62,11 +113,12 @@ const AddExpenses = ({ balance, setBalance }) => {
             boxShadow: " rgb(38, 57, 77) 0px 10px 20px -5px",
             cursor: "pointer",
           }}
-          onClick={handleClick}
         >
           Add Expense
         </button>
         <button
+          type="button"
+          onClick={onClose}
           style={{
             width: "112px",
             height: "51px",

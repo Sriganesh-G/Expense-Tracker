@@ -3,7 +3,7 @@ import { IoPizzaOutline } from "react-icons/io5";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { MdEdit } from "react-icons/md";
 
-const TransactionItem = () => {
+const TransactionItem = ({ expenseData }) => {
   return (
     <div
       style={{

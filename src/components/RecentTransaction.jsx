@@ -1,7 +1,7 @@
 import React from "react";
 import TransactionItem from "./TransactionItem";
 
-const RecentTransaction = () => {
+const RecentTransaction = ({ expenseData }) => {
   return (
     <div
       style={{
@@ -13,7 +13,7 @@ const RecentTransaction = () => {
         color: "black",
       }}
     >
-      <TransactionItem />
+      <TransactionItem /* key={index} */ expenseData />
     </div>
   );
 };
