@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import ReactModal from "react-modal";
 import { IoPizzaOutline } from "react-icons/io5";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { MdEdit } from "react-icons/md";
 import { IoGiftSharp } from "react-icons/io5";
 import { FaPersonWalkingLuggage } from "react-icons/fa6";
+import AddExpenses from "./AddExpenses";
 
 // Mapping object for categories to icons
 const iconMapping = {
@@ -25,6 +27,19 @@ const TransactionItem = ({
   totalExpense,
   setTotalExpense,
 }) => {
+  // State hook to manage modal visibility
+  const [showModal, setShowModal] = useState(false);
+
+  // Function to open the modal
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  // Function to close the modal
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   // Get the appropriate icon component based on the category
   const IconComponent = iconMapping[category] || IoPizzaOutline; // Default to IoPizzaOutline if no match
 
@@ -97,13 +112,11 @@ const TransactionItem = ({
             backgroundColor: "#FF3E3E",
             fontSize: "25px",
             color: "white",
-            fontSize: "25px",
-            color: "white",
             padding: "5px",
             height: "37px",
             width: "37px",
-            border: "none",
             cursor: "pointer",
+            border: "none",
           }}
           onClick={handleRemoveItem}
         />
@@ -120,8 +133,38 @@ const TransactionItem = ({
             border: "none",
             cursor: "pointer",
           }}
+          onClick={handleOpenModal}
         />
       </div>
+      <ReactModal
+        style={{
+          content: {
+            width: "588px",
+            height: "400px",
+            borderRadius: "15px",
+            color: "black",
+            backgroundColor: "#EFEFEF",
+            padding: "15px",
+            paddingTop: "15px",
+            position: "sticky",
+            top: "18%",
+            left: "30%",
+          },
+        }}
+        isOpen={showModal}
+        contentLabel="Add Expense Modal"
+        /*   onRequestClose={handleCloseModal}  */ // Optional: allows closing the modal by clicking outside
+      >
+        <AddExpenses
+          balance={balance}
+          setBalance={setBalance}
+          expenseData={expenseData}
+          setExpenseData={setExpenseData}
+          totalExpense={totalExpense}
+          setTotalExpense={setTotalExpense}
+          onClose={handleCloseModal} // Pass the close modal function
+        />
+      </ReactModal>
     </div>
   );
 };
