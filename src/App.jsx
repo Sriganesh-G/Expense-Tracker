@@ -93,14 +93,8 @@ function App() {
             totalExpense={totalExpense}
             setTotalExpense={setTotalExpense}
             style={{
-              /*     height: "346px",
-              minWidth: "740px",
-              backgroundColor: "#FFFFFF",
-              borderRadius: "15px",
-              marginLeft: "20px",
-              color: "black", */
               flex: 1, // Allows this div to take up available space
-              height: "346px",
+              // height: "346px",
               backgroundColor: "#FFFFFF",
               borderRadius: "15px",
               padding: "20px", // Padding inside the div

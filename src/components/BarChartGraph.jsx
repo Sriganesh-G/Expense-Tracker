@@ -34,9 +34,14 @@ const BarChartGraph = ({ expenseData }) => {
           layout="vertical" // Set layout to "vertical" for horizontal bars
           margin={{ top: 30, right: 30, left: 60, bottom: 30 }}
         >
-          <XAxis type="number" /> <YAxis dataKey="name" type="category" />{" "}
-          <Tooltip />
-          <Bar dataKey="value" fill="#8884d8" />
+          <XAxis type="number" tick={false} axisLine={false} />{" "}
+          <YAxis dataKey="name" type="category" /> <Tooltip />
+          <Bar
+            dataKey="value"
+            fill="#8884d8"
+            barSize={21}
+            radius={[0, 15, 15, 0]}
+          />
         </BarChart>
       </ResponsiveContainer>
     </div>

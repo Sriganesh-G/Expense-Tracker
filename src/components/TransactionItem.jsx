@@ -57,7 +57,7 @@ const TransactionItem = ({
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "20px 25px 10px 25px",
+        padding: "5px 25px 20px 25px",
         borderBottom: "1px solid black",
       }}
     >
