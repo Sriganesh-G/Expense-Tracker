@@ -1,9 +1,9 @@
 import Expenses from "./Expenses";
-import PieChart from "./PieChart";
 import WalletBalance from "./WalletBalance";
 import React, { useState } from "react";
 import Modal from "react-modal";
 import AddBalance from "./AddBalance";
+import PieChartGraph from "./PieChartGraph";
 
 // Set the app element for accessibility
 Modal.setAppElement("#root");
@@ -41,7 +41,7 @@ const ExpenseTrackerDetails = ({
         totalExpense={totalExpense}
         setTotalExpense={setTotalExpense}
       />
-      <PieChart />
+      <PieChartGraph expenseData={expenseData} />
     </div>
   );
 };

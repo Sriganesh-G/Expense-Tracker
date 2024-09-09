@@ -6,6 +6,8 @@ import TestModel from "./components/TestModel";
 import ExpenseTrackerDetails from "./components/ExpenseTrackerDetails";
 import ReactModal from "react-modal";
 import RecentTransaction from "./components/RecentTransaction";
+import { BarChart } from "recharts";
+import BarChartGraph from "./components/BarChartGraph";
 
 function App() {
   // Initialize state from localStorage if available, otherwise use default values
@@ -59,16 +61,69 @@ function App() {
         totalExpense={totalExpense}
         setTotalExpense={setTotalExpense}
       />
-      <div>
-        <h2 style={{ fontStyle: "italic" }}>Recent Transaction</h2>
-        <RecentTransaction
-          balance={balance}
-          setBalance={setBalance}
-          expenseData={expenseData}
-          setExpenseData={setExpenseData}
-          totalExpense={totalExpense}
-          setTotalExpense={setTotalExpense}
-        />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+          gap: "20px", // Adds space between the two divs
+          marginTop: "20px", // Adds some space between the header and the divs
+        }}
+      >
+        <div
+          className="recentTransaction"
+          style={{
+            height: "346px",
+            maxWidth: "740px",
+            backgroundColor: "#FFFFFF",
+            borderRadius: "15px",
+            marginLeft: "20px",
+            color: "black",
+            flex: 1, // Allows this div to take up available space
+            padding: "20px", // Padding inside the div
+            boxSizing: "border-box", // Ensures padding is included in width calculation
+          }}
+        >
+          <h2 style={{ fontStyle: "italic" }}>Recent Transaction</h2>
+          <RecentTransaction
+            balance={balance}
+            setBalance={setBalance}
+            expenseData={expenseData}
+            setExpenseData={setExpenseData}
+            totalExpense={totalExpense}
+            setTotalExpense={setTotalExpense}
+            style={{
+              /*     height: "346px",
+              minWidth: "740px",
+              backgroundColor: "#FFFFFF",
+              borderRadius: "15px",
+              marginLeft: "20px",
+              color: "black", */
+              flex: 1, // Allows this div to take up available space
+              height: "346px",
+              backgroundColor: "#FFFFFF",
+              borderRadius: "15px",
+              padding: "20px", // Padding inside the div
+              color: "black",
+              boxSizing: "border-box", // Ensures padding is included in width calculation
+            }}
+          />
+        </div>
+        <div
+          className="topExpenses"
+          style={{
+            flex: 1, // Allows this div to take up available space
+            height: "346px",
+            backgroundColor: "#FFFFFF",
+            borderRadius: "15px",
+            padding: "20px", // Padding inside the div
+            color: "black",
+            boxSizing: "border-box", // Ensures padding is included in width calculation
+          }}
+        >
+          <h2 style={{ fontStyle: "italic" }}>Top Expenses</h2>
+          <BarChartGraph expenseData={expenseData} />
+        </div>
       </div>
     </div>
   );

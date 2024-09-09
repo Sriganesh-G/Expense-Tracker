@@ -127,30 +127,3 @@ const TransactionItem = ({
 };
 
 export default TransactionItem;
-
-/*[
-  {
-    "title": "samosa",
-    "price": "65",
-    "category": "Food",
-    "date": "2024-09-17"
-  },
-  {
-    "title": "banglore tour",
-    "price": "2500",
-    "category": "Travel",
-    "date": "2024-09-25"
-  },
-  {
-    "title": "movie kantara",
-    "price": "250",
-    "category": "Entertainment",
-    "date": "2024-09-26"
-  },
-  {
-    "title": "amazon prime",
-    "price": "599",
-    "category": "Entertainment",
-    "date": "2024-10-01"
-  }
-] */
