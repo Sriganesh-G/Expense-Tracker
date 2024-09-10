@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import AddBalance from "./AddBalance";
 import PieChartGraph from "./PieChartGraph";
-
+import "../App.css";
 // Set the app element for accessibility
 Modal.setAppElement("#root");
 
@@ -20,10 +20,11 @@ const ExpenseTrackerDetails = ({
 
   return (
     <div
+      className="containerUp"
       style={{
         backgroundColor: "#626262",
         margin: "2px 20px",
-        height: "269px",
+        //height: "269px",
         maxWidth: "100%",
         borderRadius: "10px",
         display: "flex",
